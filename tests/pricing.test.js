@@ -106,8 +106,10 @@ assert(roundCost(0.1 + 0.2) === 0.3, 'float noise rounded away')
 
 // A router addresses a model by its own id — provider prefix, plus the routing
 // tier it ran — and Cursor spells Claude family-last. The catalogue keys on the
-// vendor's name, so those calls used to bill as `?`. Driven entirely by
-// overrides, so this stays offline and offline-deterministic.
+// vendor's name, so those calls used to bill as `?`. llm-pricing >= 0.18
+// resolves them (`peelRoutingTiers`); this pins the behaviour this plugin
+// relies on. Driven entirely by overrides, so it stays offline and
+// deterministic.
 console.log('router ids resolve to the catalogue key they meant')
 mergeOverrides({
   'claude-opus-9.9': { inputPerM: 5, outputPerM: 25 },
